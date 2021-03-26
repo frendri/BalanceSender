@@ -3,7 +3,7 @@ import requests
 import ujson
 
 # to generate your key: Fernet().generate_key()
-KEY = b''
+KEY = Fernet.generate_key()
 
 f = Fernet(KEY)
 
