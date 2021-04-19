@@ -7,7 +7,6 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QDialog, QMessageBox
 
 from utils import *
 import string
-from json import JSONDecodeError
 
 
 class MainWindow(QMainWindow):
