@@ -204,9 +204,10 @@ class MainWindow(QMainWindow):
         try:
             amount = int(self.ui.copSum.text())
         except ValueError:
-            amount = self._get_tm_balance(from_key)
-        except Exception:
-            return
+            try:
+                amount = self._get_tm_balance(from_key)
+            except:
+                return
         pay_pass = self.ui.paymentPassword.text()
 
         validate_state, message = self.validate(from_key, to_key, amount, pay_pass)
