@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainptydyL.ui'
+## Form generated from reading UI file 'mainRQjHHF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(495, 555)
+        MainWindow.resize(474, 587)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -122,6 +122,30 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_2.addWidget(self.frame_3)
+
+        self.frame_11 = QFrame(self.TM)
+        self.frame_11.setObjectName(u"frame_11")
+        self.frame_11.setMinimumSize(QSize(0, 40))
+        self.frame_11.setMaximumSize(QSize(16777215, 40))
+        self.frame_11.setLayoutDirection(Qt.LeftToRight)
+        self.frame_11.setFrameShape(QFrame.NoFrame)
+        self.frame_11.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_11 = QHBoxLayout(self.frame_11)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.label_13 = QLabel(self.frame_11)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setMaximumSize(QSize(120, 16777215))
+
+        self.horizontalLayout_11.addWidget(self.label_13)
+
+        self.clearRubSum = QLineEdit(self.frame_11)
+        self.clearRubSum.setObjectName(u"clearRubSum")
+        self.clearRubSum.setMaximumSize(QSize(150, 16777215))
+
+        self.horizontalLayout_11.addWidget(self.clearRubSum)
+
+
+        self.verticalLayout_2.addWidget(self.frame_11)
 
         self.frame_4 = QFrame(self.TM)
         self.frame_4.setObjectName(u"frame_4")
@@ -274,6 +298,27 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.frame_10)
 
+        self.frame_12 = QFrame(self.frame_8)
+        self.frame_12.setObjectName(u"frame_12")
+        self.frame_12.setFrameShape(QFrame.StyledPanel)
+        self.frame_12.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_12 = QHBoxLayout(self.frame_12)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.label_14 = QLabel(self.frame_12)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setMaximumSize(QSize(100, 16777215))
+
+        self.horizontalLayout_12.addWidget(self.label_14)
+
+        self.clearDolSum = QLineEdit(self.frame_12)
+        self.clearDolSum.setObjectName(u"clearDolSum")
+        self.clearDolSum.setMaximumSize(QSize(200, 16777215))
+
+        self.horizontalLayout_12.addWidget(self.clearDolSum)
+
+
+        self.verticalLayout_5.addWidget(self.frame_12)
+
         self.label_12 = QLabel(self.frame_8)
         self.label_12.setObjectName(u"label_12")
         self.label_12.setMaximumSize(QSize(16777215, 30))
@@ -339,10 +384,11 @@ class Ui_MainWindow(object):
         self.toApiKey.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter your TM API-key...", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0443\u043c\u043c\u0430 \u0432 \u0440\u0443\u0431\u043b\u044f\u0445", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0443\u043c\u043c\u0430 \u0432 \u043a\u043e\u043f\u0435\u0439\u043a\u0430\u0445", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"\u0427\u0438\u0441\u0442\u0430\u044f \u0441\u0443\u043c\u043c\u0430 \u0432 \u0440\u0443\u0431\u043b\u044f\u0445", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u0415\u0441\u043b\u0438 \u0432\u044b \u043d\u0435 \u0432\u0432\u0435\u0434\u0435\u0442\u0435 \u0441\u0443\u043c\u043c\u0443, \u0442\u043e \u0431\u0443\u0434\u0435\u0442 \u043f\u0435\u0440\u0435\u043d\u0435\u0441\u0435\u043d \u0432\u0435\u0441\u044c \u0431\u0430\u043b\u0430\u043d\u0441 \u0430\u043a\u043a\u0430\u0443\u043d\u0442\u0430", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043b\u0430\u0442\u0435\u0436\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c", None))
         self.paymentPassword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter your payment password...", None))
-        self.PaymentLinkLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><a href=\"https://market.csgo.com/checkout/password\"><span style=\" text-decoration: underline; color:#0000ff;\">\u0413\u0434\u0435 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c \u043f\u043b\u0430\u0442\u0435\u0436\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c?</span></a></p></body></html>", None))
+        self.PaymentLinkLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><a href=\"https://market.csgo.com/checkout/password/useold/\"><span style=\" text-decoration: underline; color:#0000ff;\">\u0413\u0434\u0435 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c \u043f\u043b\u0430\u0442\u0435\u0436\u043d\u044b\u0439 \u043f\u0430\u0440\u043e\u043b\u044c?</span></a></p></body></html>", None))
         self.sendButton.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u043d\u0435\u0441\u0442\u0438 \u0431\u0430\u043b\u0430\u043d\u0441", None))
         self.body.setTabText(self.body.indexOf(self.TM), QCoreApplication.translate("MainWindow", u"TM", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"API-KEY \u043e\u0442\u043a\u0443\u0434\u0430 \u043f\u0435\u0440\u0435\u043d\u043e\u0441\u0438\u043c", None))
@@ -351,10 +397,11 @@ class Ui_MainWindow(object):
         self.steamId.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter your SteamID(7656....)", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u0411\u0430\u043b\u0430\u043d\u0441 \u0432 $", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u0411\u0430\u043b\u0430\u043d\u0441 \u0432 \u0446\u0435\u043d\u0442\u0430\u0445", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"\u0427\u0438\u0441\u0442\u0430\u044f \u0441\u0443\u043c\u043c\u0430 \u0432 $", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"\u0415\u0441\u043b\u0438 \u0432\u044b \u043d\u0435 \u0432\u0432\u0435\u0434\u0435\u0442\u0435 \u0441\u0443\u043c\u043c\u0443, \u0442\u043e \u0431\u0443\u0434\u0435\u0442 \u043f\u0435\u0440\u0435\u043d\u0435\u0441\u0435\u043d \u0432\u0435\u0441\u044c \u0431\u0430\u043b\u0430\u043d\u0441 \u0430\u043a\u043a\u0430\u0443\u043d\u0442\u0430", None))
         self.sendButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u043d\u0435\u0441\u0442\u0438 \u0431\u0430\u043b\u0430\u043d\u0441", None))
         self.body.setTabText(self.body.indexOf(self.waxPage), QCoreApplication.translate("MainWindow", u"WaxPeer", None))
-        self.versionLabel.setText(QCoreApplication.translate("MainWindow", u"v1.0", None))
-        self.creditLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0410\u0432\u0442\u043e\u0440: <a href=\"https://vk.com/tern.trade\"><span style=\" text-decoration: underline; color:#0000ff;\">https://vk.com/tern.trade</span></a></p></body></html>", None))
+        self.versionLabel.setText(QCoreApplication.translate("MainWindow", u"v1.1", None))
+        self.creditLabel.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u0410\u0432\u0442\u043e\u0440: <a href=\"https://vk.com/tern.trade\"><span style=\" text-decoration: underline; color:#0000ff;\">vk.com/tern.trade</span></a></p></body></html>", None))
     # retranslateUi
 
