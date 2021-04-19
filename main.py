@@ -204,10 +204,10 @@ class MainWindow(QMainWindow):
         try:
             amount = int(self.ui.copSum.text())
         except ValueError:
-            try:
-                amount = self._get_tm_balance(from_key)
-            except:
+            amount = self._get_tm_balance(from_key)
+            if not amount:
                 return
+
         pay_pass = self.ui.paymentPassword.text()
 
         validate_state, message = self.validate(from_key, to_key, amount, pay_pass)
@@ -276,8 +276,13 @@ class MainWindow(QMainWindow):
 
     def _get_tm_balance(self, api_key: str):
         try:
-            response = get_tm_balance(api_key)
-            money = int(response.json().get('money')*100)
+            response = get_tm_balance(api_key).json()
+            if response.get('error') == "Bad KEY":
+                error_message = "Указан неверный API-ключ"
+                self.show_message_box("Ошибка получения баланса:\n" + error_message,
+                                      "Получение баланса", QMessageBox.Warning)
+                return
+            money = int(response.get('money')*100)
             return money
         except Exception as ex:
             error_message = getattr(ex, 'message', repr(ex))
