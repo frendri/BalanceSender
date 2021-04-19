@@ -2,6 +2,7 @@ from ui.main_ui import Ui_MainWindow
 from ui.confirm_dialog_ui import Ui_Dialog
 
 import sys
+import math
 from PyQt5.QtWidgets import QMainWindow, QApplication, QDialog, QMessageBox
 
 from utils import *
@@ -32,30 +33,56 @@ class MainWindow(QMainWindow):
         # style counts
         self.ui.rubbleSum.textEdited.connect(self.change_cop_count)
         self.ui.copSum.textEdited.connect(self.change_rub_count)
+        self.ui.clearRubSum.textEdited.connect(self.changed_clear_sum)
         self.ui.dollarSum.textEdited.connect(self.change_cent_count)
         self.ui.centSum.textEdited.connect(self.change_dol_count)
+        self.ui.clearDolSum.textEdited.connect(self.changed_clear_dol)
         # connect signal
         self.ui.sendButton.clicked.connect(self.send_balance)
         self.ui.sendButton_2.clicked.connect(self.send_wax_balance)
 
+    def changed_clear_dol(self, clear_dol: str):
+        try:
+            if not clear_dol:
+                self.ui.centSum.clear()
+                self.ui.dollarSum.clear()
+                return
+            dol_count = "".join(clear_dol.split())
+            if ',' in dol_count:
+                dol_count = dol_count.replace(',', '.')
+            self.ui.clearDolSum.setText(dol_count)
+            dirt_dol = math.floor(float(dol_count)*100/98*1000)/1000
+            self.ui.dollarSum.setText(str(dirt_dol))
+            self.ui.centSum.setText(str(int(dirt_dol * 1000)))
+        except:
+            self.show_message_box("Вы ввели недопустимые символы в поле")
+            self.ui.dollarSum.clear()
+            self.ui.centSum.clear()
+            self.ui.clearDolSum.clear()
+
     def change_cent_count(self, dol_count: str):
         try:
             if not dol_count:
-                self.ui.centSum.setText('')
+                self.ui.centSum.clear()
+                self.ui.clearDolSum.clear()
                 return
             dol_count = "".join(dol_count.split())
             if ',' in dol_count:
                 dol_count = dol_count.replace(',', '.')
             self.ui.dollarSum.setText(dol_count)
+            self.ui.clearDolSum.setText(str(round(float(dol_count)*0.98, 2)))
             self.ui.centSum.setText(str(int(float(dol_count)*1000)))
         except:
             self.show_message_box("Вы ввели недопустимые символы в поле")
             self.ui.dollarSum.clear()
+            self.ui.centSum.clear()
+            self.ui.clearDolSum.clear()
 
     def change_dol_count(self, cent_count: str):
         try:
             if not cent_count:
                 self.ui.dollarSum.setText('')
+                self.ui.clearDolSum.clear()
                 return
             cent_count = "".join(cent_count.split())
             new_cent = ""
@@ -64,28 +91,55 @@ class MainWindow(QMainWindow):
                     new_cent += char
             self.ui.centSum.setText(new_cent)
             self.ui.dollarSum.setText(str(round(float(new_cent)/1000, 3)))
+            self.ui.clearDolSum.setText(str(round(float(cent_count)/1000*0.98, 3)))
         except:
             self.show_message_box("Вы ввели недопустимые символы в поле")
             self.ui.centSum.clear()
+            self.ui.dollarSum.clear()
+            self.ui.clearDolSum.clear()
+
+    def changed_clear_sum(self, clear_rub: str):
+        try:
+            if not clear_rub:
+                self.ui.copSum.clear()
+                self.ui.rubbleSum.clear()
+                return
+            rubble_count = "".join(clear_rub.split())
+            if ',' in rubble_count:
+                rubble_count = rubble_count.replace(',', '.')
+            self.ui.clearRubSum.setText(rubble_count)
+            dirt_ruble = math.ceil(float(rubble_count)*100/95*100)/100
+            self.ui.rubbleSum.setText(str(dirt_ruble))
+            self.ui.copSum.setText(str(int(dirt_ruble*100)))
+        except:
+            self.show_message_box("Вы ввели недопустимые символы в поле")
+            self.ui.clearRubSum.clear()
+            self.ui.copSum.clear()
+            self.ui.rubbleSum.clear()
 
     def change_cop_count(self, rubble_count: str):
         try:
             if not rubble_count:
-                self.ui.copSum.setText('')
+                self.ui.copSum.clear()
+                self.ui.clearRubSum.clear()
                 return
             rubble_count = "".join(rubble_count.split())
             if ',' in rubble_count:
                 rubble_count = rubble_count.replace(',', '.')
             self.ui.rubbleSum.setText(rubble_count)
             self.ui.copSum.setText(str(int(float(rubble_count)*100)))
+            self.ui.clearRubSum.setText(str(round(float(rubble_count)*0.95, 2)))
         except:
             self.show_message_box("Вы ввели недопустимые символы в поле")
+            self.ui.clearRubSum.clear()
+            self.ui.copSum.clear()
             self.ui.rubbleSum.clear()
 
     def change_rub_count(self, cop_count: str):
         try:
             if not cop_count:
-                self.ui.rubbleSum.setText('')
+                self.ui.rubbleSum.clear()
+                self.ui.clearRubSum.clear()
                 return
             cop_count = "".join(cop_count.split())
             new_cop = ""
@@ -94,9 +148,12 @@ class MainWindow(QMainWindow):
                     new_cop += char
             self.ui.copSum.setText(new_cop)
             self.ui.rubbleSum.setText(str(round(float(new_cop)/100, 2)))
+            self.ui.clearRubSum.setText(str(round(float(new_cop)/100*0.95, 2)))
         except:
             self.show_message_box("Вы ввели недопустимые символы в поле")
+            self.ui.clearRubSum.clear()
             self.ui.copSum.clear()
+            self.ui.rubbleSum.clear()
 
     def send_wax_balance(self):
         from_key = self.ui.fromWaxKey.text()
@@ -218,7 +275,7 @@ class MainWindow(QMainWindow):
     def _get_tm_balance(self, api_key: str):
         try:
             response = get_tm_balance(api_key)
-            money = response.json().get('money')*100
+            money = int(response.json().get('money')*100)
             return money
         except Exception as ex:
             error_message = getattr(ex, 'message', repr(ex))
